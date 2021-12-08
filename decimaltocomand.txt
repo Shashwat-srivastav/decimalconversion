@@ -1,0 +1,200 @@
+import java.util.*;
+class conversion
+{
+
+    static String s="";
+    static  long y=3;
+    static long sum=0;
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the no. from base 10 to get the no. in base 8,base 2,base 16");
+        long x=sc.nextInt();
+        conversion ob= new conversion();
+        ob.dtb(x);
+        ob.dto(x);
+        ob.dth(x);
+        System.out.println("");
+        System.out.println("enter  yes to get binary to decimal ");
+        String yo=sc.next();
+        if(yo.equalsIgnoreCase("yes"))
+        { 
+
+            System.out.println("enter no. in binary to get in decimal ");
+            long g=sc.nextLong();
+            String l;
+            ob.btd(g);
+            ob.dto(sum);
+            ob.dth(sum);
+        }
+         sum=0;
+        System.out.println("");
+        System.out.println("enter  yes to get octal to decimal ");
+        String yo1=sc.next();
+        if(yo1.equalsIgnoreCase("yes"))
+        { 
+
+            System.out.println("enter no. in octal to get in decimal ");
+            long gr=sc.nextInt();
+            ob.otd(gr);
+            ob.dtb(sum);
+            ob.dth(sum);
+        }
+
+    }
+    public static void dtb(long x)
+    {
+        while(y!=0)
+        {
+            y=x/2;
+            String c;
+            if(y!=0)
+            {
+             long w=x-(y*2);
+
+                c=Integer.toString((int)w);
+                s=s+c;
+                x=y;
+            }
+
+            if(y<2)
+            {
+                c=Integer.toString((int)y);
+                s=s+c;
+            }
+            if(y==0)
+            {
+                System.out.println("IN BINARY :");
+                for(int i=s.length()-1;i>=0;i--)
+                {
+                    System.out.print(s.charAt(i));
+                }
+            }
+        }
+    }  
+
+    public static void dto(long x)
+    {
+
+        if(sum>0)
+        { x=sum;
+        }
+        y=3;s="";
+        System.out.println("");
+        while(y!=0)
+        {
+            String c;
+            y=x/8;
+
+            if(y!=0)
+            {
+                long w=x-(y*8);
+
+                c=Integer.toString((int)w);
+                s=s+c;
+                x=y;
+            }
+            if(y<8)
+            {
+                c=Integer.toString((int)y);
+                s=s+c;
+            }
+
+            if(y==0)
+            {
+
+                System.out.println("IN OCTAL :");
+                for(int i=s.length()-1;i>=0;i--)
+                {
+                    System.out.print(s.charAt(i));
+                }
+            }
+        }
+
+    }
+
+    public static void dth(long x)
+    {
+        if(sum>0)
+        { x=sum;
+        }
+        y=3;s="";
+        System.out.println("");
+        String h[]={"A","B","C","D","E","F"};
+        while(y!=0)
+        {
+            String c;
+            y=x/16;
+
+            if(y!=0)
+            {
+                long w=x-(y*16);
+                if(w>=10)
+                {
+                 long we=w%10;
+                 s=s+h[(int)we];
+                }else{
+                c=Integer.toString((int)w);
+                s=s+c;
+            }
+                x=y;
+            }
+            if(y<10)
+            {
+             
+                c=Integer.toString((int)y);
+                s=s+c;
+            }
+
+            if(y<16&&y>=10)
+            {
+                long v=y%10;
+                c=h[(int)v];
+                s=s+c;
+            }
+
+            if(y==0)
+            {
+
+                System.out.println("IN HEX :");
+                for(int i=s.length()-1;i>=0;i--)
+                {
+                    System.out.print(s.charAt(i));
+                }
+            }
+        }
+
+    }
+
+    public static void btd(long g)
+    {
+       long y=g;
+
+        int j=0;
+        while(y!=0)
+        {
+            long f=y%10;
+            sum=sum+(f*(int)Math.pow(2,j));
+            y=y/10;
+            j=j+1;
+        }
+        System.out.println("IN DECIMAL :");
+        System.out.println(sum);
+    }
+
+    public static void otd(long gr)
+    {
+        y=gr;
+
+        int j=0;
+        while(y!=0)
+        {
+            long f=y%10;
+            sum=sum+(f*(long)Math.pow(8,j));
+            y=y/10;
+            j=j+1;
+        }
+        System.out.println("IN DECIMAL :");
+        System.out.println(sum);
+    }
+}
